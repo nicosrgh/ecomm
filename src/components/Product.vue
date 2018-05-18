@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
     <div v-for="product in products" :key="product.id">
         <h3>{{ product.name }}</h3>
     </div>
@@ -14,7 +13,6 @@ export default {
   name: 'hello',
   data() {
     return {
-      msg: 'Ecomm APP',
       products: null,
     };
   },
