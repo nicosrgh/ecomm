@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <input type="text" v-model="search" v-on:keyup="searchProduct"/>
     <div v-for="product in products" :key="product.id">
         <h3>{{ product.name }}</h3>
     </div>
@@ -8,12 +9,13 @@
 
 <script>
 import axios from 'axios';
-
+/* eslint no-template-curly-in-string: "error" */
 export default {
   name: 'hello',
   data() {
     return {
       products: null,
+      search: '',
     };
   },
   mounted() {
@@ -22,6 +24,15 @@ export default {
       .then((response) => {
         this.products = response.data;
       });
+  },
+  methods: {
+    searchProduct() {
+      axios
+        .get(`http://ecomm-api.test/api/products?search=${this.search}`)
+        .then((response) => {
+          this.products = response.data;
+        });
+    },
   },
 };
 </script>
