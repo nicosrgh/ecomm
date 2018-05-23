@@ -1,8 +1,14 @@
 <template>
   <div class="hello">
-    <input type="text" v-model="search" v-on:keyup="searchProduct"/>
-    <div v-for="product in products" :key="product.id">
+    <div class="search">
+      <input type="text" v-model="search" v-on:keyup="searchProduct"/>
+    </div>
+    <div v-for="product in products" :key="product.id" class="card">
+      <img :src="product.image_url" width="300px" height="250px"/> 
+      <div class="container">
         <h3>{{ product.name }}</h3>
+        <h5>{{ product.price }}</h5>
+      </div>
     </div>
   </div>
 </template>
@@ -55,5 +61,26 @@ li {
 
 a {
   color: #35495E;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  margin: 10px;
+  text-align: left;
+  display: inline-grid;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.search {
+  text-align: end;
+  margin: 0px 50px 0px 50px;
 }
 </style>
