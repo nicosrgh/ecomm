@@ -1,11 +1,10 @@
 <template>
 <div class="detail-product">
-    <h3>{{ product.name }}</h3>
+    <h3>{{ this.product.name }} </h3>
 </div>    
 </template>
 
 <script>
-import axios from 'axios';
 /* eslint no-template-curly-in-string: "error" */
 export default {
   name: 'detail-product',
@@ -14,13 +13,9 @@ export default {
       product: null,
     };
   },
-  mounted() {
-    this.id = this.$route.params.id;
-    axios
-      .get(`http://ecomm-api.test/api/products/${this.id}`)
-      .then((response) => {
-        this.product = response.data;
-      });
+  async mounted() {
+    await this.$store.dispatch('getDetailProduct', this.$route.params.id);
+    this.product = this.$store.state.products;
   },
 };
 </script>

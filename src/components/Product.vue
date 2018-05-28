@@ -26,7 +26,7 @@ export default {
     };
   },
   async mounted() {
-    await this.$store.dispatch('getProduct');
+    await this.$store.dispatch('getProducts');
   },
 };
 </script>

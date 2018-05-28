@@ -4,5 +4,8 @@ export default {
     },
     setSearch(state, data) {
         state.search = data;
-    }
+    },
+    setIdProduct(state, data) {
+        state.idProduct = data;
+    },
 }

@@ -1,4 +1,5 @@
 export default {
     products: null,
-    search: ''
+    search: '',
+    idProduct: null,
 }
