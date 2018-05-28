@@ -1,9 +1,8 @@
 <template>
   <div class="product">
     <div class="search">
-      <input type="text" v-model="search" v-on:keyup="searchProduct"/>
     </div>
-    <div v-for="product in products" :key="product.id" class="card">
+    <div v-for="product in $store.state.products" :key="product.id" class="card">
       <router-link :to="{ name: 'DetailProduct', params: { id: product.id }}">
       <div>
         <img :src="product.image_url" width="300px" height="250px"/> 
@@ -18,31 +17,16 @@
 </template>
 
 <script>
-import axios from 'axios';
 /* eslint no-template-curly-in-string: "error" */
 export default {
   name: 'product',
   data() {
     return {
-      products: null,
       search: '',
     };
   },
-  mounted() {
-    axios
-      .get('http://ecomm-api.test/api/products')
-      .then((response) => {
-        this.products = response.data;
-      });
-  },
-  methods: {
-    searchProduct() {
-      axios
-        .get(`http://ecomm-api.test/api/products?search=${this.search}`)
-        .then((response) => {
-          this.products = response.data;
-        });
-    },
+  async mounted() {
+    await this.$store.dispatch('getProduct');
   },
 };
 </script>

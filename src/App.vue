@@ -5,7 +5,7 @@
         <router-link to="/" class="logo-color">ecomm</router-link>
       </div>
       <div class="search">
-        <input type="text"/>
+        <input type="text" v-model="search" v-on:keyup.enter="searchProduct"/>
       </div>
     </header>
     <main>
@@ -17,6 +17,16 @@
 <script>
 export default {
   name: 'app',
+  data() {
+    return {
+      search: '',
+    };
+  },
+  methods: {
+    async searchProduct() {
+      await this.$store.dispatch('searchProduct', this.search);
+    },
+  },
 };
 </script>
 
