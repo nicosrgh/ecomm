@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <header>
-      <span>ecomm</span>
+      <div class="logo">
+        <router-link to="/" class="logo-color">ecomm</router-link>
+      </div>
+      <div class="search">
+        <input type="text"/>
+      </div>
     </header>
     <main>
       <router-view></router-view>
@@ -33,9 +38,8 @@ main {
 }
 
 header {
-  margin: 0;
-  height: 56px;
-  padding: 0 16px 0 24px;
+  margin: 0px;
+  padding: 20px 16px 20px 24px;
   background-color: #35495E;
   color: #ffffff;
 }
@@ -50,4 +54,18 @@ header span {
   box-sizing: border-box;
   padding-top: 16px;
 }
+
+.logo{
+  width: 25%;
+}
+
+.search-product {
+  width: 75%;
+  text-align: end;
+}
+
+.logo-color {
+  color: #ffffff;
+}
+
 </style>

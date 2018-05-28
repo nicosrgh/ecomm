@@ -1,14 +1,18 @@
 <template>
-  <div class="hello">
+  <div class="product">
     <div class="search">
       <input type="text" v-model="search" v-on:keyup="searchProduct"/>
     </div>
     <div v-for="product in products" :key="product.id" class="card">
-      <img :src="product.image_url" width="300px" height="250px"/> 
-      <div class="container">
-        <h3>{{ product.name }}</h3>
-        <h5>{{ product.price }}</h5>
+      <router-link :to="{ name: 'DetailProduct', params: { id: product.id }}">
+      <div>
+        <img :src="product.image_url" width="300px" height="250px"/> 
+        <div class="container">
+          <h3>{{ product.name }}</h3>
+          <h5>{{ product.price }}</h5>
+        </div>
       </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -17,7 +21,7 @@
 import axios from 'axios';
 /* eslint no-template-curly-in-string: "error" */
 export default {
-  name: 'hello',
+  name: 'product',
   data() {
     return {
       products: null,
